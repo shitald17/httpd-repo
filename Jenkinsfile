@@ -37,6 +37,7 @@ pipeline{
                     exit
                     sudo docker cp $WORKSPACE/index.html httpd-2:/usr/local/apache2/htdocs/
                     sudo docker exec httpd-2 bash
+                    sudo pwd
                     sudo chmod 777 /htdocs/index.html
                     exit
                     sudo docker cp $WORKSPACE/index.html httpd-3:/usr/local/apache2/htdocs/
