@@ -14,7 +14,7 @@ pipeline{
           }
     stage("checkout_code_from_SCM"){
       steps{
-             sh "checkout SCM"
+             checkout scm
            }
           }
      stage("creating_docker_container_on_jenkins_master"){
