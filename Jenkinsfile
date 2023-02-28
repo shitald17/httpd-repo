@@ -19,6 +19,7 @@ pipeline{
      stage("creating_docker_container_on_jenkins_master"){
        steps{
             sh '''
+                sudo docker rm --force httpd-2
                 sudo docker run -itdp 81:80 --name httpd-2 httpd
             '''
              }
