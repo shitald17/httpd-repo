@@ -2,7 +2,6 @@ pipeline{
   agent{
     label{
         label "built-in"
-        customWorkspace "/mnt/docker/"
     }
 
   }
@@ -14,7 +13,7 @@ pipeline{
           }
     stage("checkout_code_from_SCM"){
       steps{
-             sh "checkout SCM"
+             checkout scm
            }
           }
      stage("creating_docker_container_on_jenkins_master"){
@@ -29,14 +28,12 @@ pipeline{
      stage("copying_index_file_in_repo_contaners"){
         steps{
                 sh '''
-                    sudo docker cp /mnt/docker/index.html httpd-1:/usr/local/apache2/htdocs/ 
-                    sudo docker cp /mnt/docker/index.html httpd-2:/usr/local/apache2/htdocs/
-                    sudo docker cp /mnt/docker/index.html httpd-3:/usr/local/apache2/htdocs/
+                    sudo docker cp $WORKSPACE/index.html httpd-1:/usr/local/apache2/htdocs/ 
+                    sudo docker cp $WORKSPACE/index.html httpd-2:/usr/local/apache2/htdocs/
+                    sudo docker cp $WORKSPACE/index.html httpd-3:/usr/local/apache2/htdocs/
                 '''
              }
             } 
             
     }
 } 
-    
-    
