@@ -32,17 +32,19 @@ pipeline{
         steps{
                 sh '''
                     sudo docker cp $WORKSPACE/index.html httpd-1:/usr/local/apache2/htdocs/
-                    sudo docker exec httpd-1 bash
-                    sudo pwd
+                    sudo cd /mnt/
+                    sudo docker exec -it httpd-1 bash
                     sudo chmod 777 /htdocs/index.html
                     exit
                     sudo docker cp $WORKSPACE/index.html httpd-2:/usr/local/apache2/htdocs/
-                    sudo docker exec httpd-2 bash
+                    sudo cd /mnt/
+                    sudo docker exec -it httpd-2 bash
                     sudo pwd
                     sudo chmod 777 /htdocs/index.html
                     exit
                     sudo docker cp $WORKSPACE/index.html httpd-3:/usr/local/apache2/htdocs/
-                    sudo docker exec httpd-3 bash
+                    sudo cd /mnt/
+                    sudo docker exec -it httpd-3 bash
                     sudo chmod 777 /htdocs/index.html
                     exit
                 '''
