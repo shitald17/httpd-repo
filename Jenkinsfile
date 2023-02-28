@@ -28,9 +28,21 @@ pipeline{
      stage("copying_index_file_in_repo_contaners"){
         steps{
                 sh '''
-                    sudo docker cp $WORKSPACE/index.html httpd-1:/usr/local/apache2/htdocs/ 
+                    sudo docker cp $WORKSPACE/index.html httpd-1:/usr/local/apache2/htdocs/
+                    httpd1=sudo docker ps -aqf "name=httpd-1"
+                    sudo docker exec -it $httpd1 bash
+                    sudo chmod 777 /htdocs/index.html
+                    exit
                     sudo docker cp $WORKSPACE/index.html httpd-2:/usr/local/apache2/htdocs/
+                    httpd2=sudo docker ps -aqf "name=httpd-2"
+                    sudo docker exec -it $httpd2 bash
+                    sudo chmod 777 /htdocs/index.html
+                    exit
                     sudo docker cp $WORKSPACE/index.html httpd-3:/usr/local/apache2/htdocs/
+                    httpd3=sudo docker ps -aqf "name=httpd-3"
+                    sudo docker exec -it $httpd3 bash
+                    sudo chmod 777 /htdocs/index.html
+                    exit
                 '''
              }
             } 
