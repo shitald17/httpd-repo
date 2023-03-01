@@ -28,7 +28,7 @@ pipeline{
      stage("copying_index_file_in_repo_contaners"){
         steps{
                 sh '''
-                    sudo docker cp $WORKSPACE/index.html httpd-3:/usr/local/apache2/htdocs/
+                    sudo docker cp /mnt/jenkins-master/index.html httpd-3:/usr/local/apache2/htdocs/
                 '''
              }
             } 
