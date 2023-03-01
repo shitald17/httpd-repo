@@ -2,6 +2,7 @@ pipeline{
   agent{
     label{
         label "built-in"
+        customWorkspace "/mnt/jenkins-master/"
     }
 
   }
